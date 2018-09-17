@@ -36,7 +36,9 @@ const input_ = (set, key, value) => { return (
       type: "text",
       value: value })
 )};
+
 const text_ = (id, value) => { return (h("p", { id }, value)) };
+
 const button_ = (value, action, css_class) => { return (
   h("button", { 
     class: css_class,

@@ -44,7 +44,29 @@ tressa.title('--- actions ---');
 
 tressa.title('--- views ---');
 
-  // this is more complex, we deal with this later
+  // for now, print the components to the console and look at them
+  let input_cases = [
+    { args: [actions.set, 'operation', 'add']},
+    { args: [actions.set, 'a', '2']},
+    { args: [actions.set, 'b', '3']}
+  ];
+  test_component('input', input_, input_cases);
+
+  let text_cases = [
+    { args: ['read-me', state.message]}
+  ];
+  test_component('text', text_, text_cases);
+
+  let button_cases = [
+    { args: ['reverse', actions.reverse, 'button']},
+    { args: ['display', actions.display, '']}
+  ];
+  test_component('button', button_, button_cases);
+
+  let view_cases = [
+    { args: [state, actions]}
+  ];
+  test_component('view', view, view_cases);
 
 
 
@@ -69,3 +91,17 @@ function test_action(action, cases) {
     return result;
   };
 };
+
+function test_component(name, component, cases) {
+  let result = [];
+  result.push(name);
+  for (let t_case of cases) {
+    let args = t_case.args;
+    let instance = component(...args);
+    result.push(instance);
+  };
+  console.log(result);
+}
+
+
+
